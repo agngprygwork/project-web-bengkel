@@ -1,0 +1,76 @@
+{{-- resources/views/admin/users/edit.blade.php --}}
+@extends('layouts.app')
+
+@section('title', 'Edit Customer')
+@section('page-title', 'Edit Customer: ' . $user->name)
+
+@section('content')
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4">
+                <h3 class="text-white font-semibold">Form Edit Customer</h3>
+            </div>
+
+            <form action="{{ route('admin.users.update', $user) }}" method="POST" class="p-6 space-y-4">
+                @csrf
+                @method('PUT')
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap *</label>
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}" required
+                            class="w-full border-gray-300 rounded-lg @error('name') border-red-500 @enderror">
+                        @error('name')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" name="email" value="{{ old('email', $user->email) }}" required
+                            class="w-full border-gray-300 rounded-lg @error('email') border-red-500 @enderror">
+                        @error('email')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password (kosongkan jika tidak
+                            diubah)</label>
+                        <input type="password" name="password"
+                            class="w-full border-gray-300 rounded-lg @error('password') border-red-500 @enderror">
+                        @error('password')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                        <input type="password" name="password_confirmation" class="w-full border-gray-300 rounded-lg">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">No. Telepon</label>
+                        <input type="text" name="no_hp" value="{{ old('no_hp', $user->customer->no_hp ?? '') }}"
+                            class="w-full border-gray-300 rounded-lg">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                        <textarea name="alamat" rows="3" class="w-full border-gray-300 rounded-lg">{{ old('alamat', $user->customer->alamat ?? '') }}</textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4">
+                    <a href="{{ route('admin.users.index') }}"
+                        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">
+                        Batal
+                    </a>
+                    <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
