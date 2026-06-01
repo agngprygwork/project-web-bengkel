@@ -64,6 +64,11 @@ class Booking extends Model
         return $this->hasOne(Service::class);
     }
 
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
     // Scopes
     public function scopePending($query)
     {

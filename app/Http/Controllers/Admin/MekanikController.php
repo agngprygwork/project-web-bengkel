@@ -46,9 +46,7 @@ class MekanikController extends Controller
         // Statistics
         $stats = [
             'total' => Mekanik::count(),
-            'active' => Mekanik::whereHas('user', function ($q) {
-                $q->whereNotNull('email_verified_at');
-            })->count(),
+            'active' => Mekanik::count(),
             'spesialis_list' => Mekanik::select('spesialis')->distinct()->pluck('spesialis'),
             'avg_experience' => Mekanik::avg('pengalaman_tahun'),
         ];

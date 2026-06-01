@@ -64,14 +64,6 @@
             </div>
         </div>
 
-        <!-- Monthly Trend Chart -->
-        @if ($monthlyTrend->count() > 0)
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-lg font-semibold mb-4">Tren Booking per Bulan</h3>
-                <canvas id="monthlyTrendChart" height="200"></canvas>
-            </div>
-        @endif
-
         <!-- Recent Bookings -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="px-6 py-4 border-b bg-gray-50">

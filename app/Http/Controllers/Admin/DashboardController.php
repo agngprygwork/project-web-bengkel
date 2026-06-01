@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
         // Pendapatan bulan ini
         $totalRevenue = Booking::where('status_pembayaran', 'lunas')
-            ->whereMonth('tanggal_pembayaran', now()->month)
+            ->whereMonth('created_at', now()->month)
             ->sum('total_bayar');
 
         // Customer baru bulan ini

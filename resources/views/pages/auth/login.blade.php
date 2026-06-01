@@ -10,169 +10,114 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gradient-to-br from-blue-500 to-blue-700 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto">
-            <!-- Logo/Brand -->
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-4">
-                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                        </path>
-                    </svg>
+<body class="min-h-screen bg-[#f4f2ff] flex items-center justify-center p-6">
+
+    <div class="w-full max-w-7xl bg-white rounded-[32px] shadow-xl overflow-hidden">
+
+        <div class="grid lg:grid-cols-2">
+
+            <!-- LEFT SIDE -->
+            <div
+                class="relative min-h-[700px] p-12 bg-gradient-to-b from-sky-300 via-indigo-500 to-indigo-900 text-white">
+
+                <div class="text-6xl font-bold">
+                    *
                 </div>
-                <h1 class="text-3xl font-bold text-white mb-2">Booking Bengkel</h1>
-                <p class="text-blue-100">Sistem Informasi Booking Servis Motor</p>
+
+                {{-- <div class="absolute bottom-12 left-12">
+                    <p class="text-xl mb-4 opacity-90">
+                        You can easily
+                    </p>
+
+                    <h2 class="text-5xl font-bold leading-tight">
+                        Get access your personal hub for clarity and productivity
+                    </h2>
+                </div> --}}
             </div>
 
-            <!-- Login Card -->
-            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div class="px-8 pt-8 pb-4">
-                    <h2 class="text-2xl font-bold text-gray-800 text-center">Login</h2>
-                    <p class="text-gray-500 text-center mt-2">Silakan masuk ke akun Anda</p>
-                </div>
+            <!-- RIGHT SIDE -->
+            <div class="flex items-center justify-center p-12">
 
-                <!-- Alert Messages -->
-                @if (session('success'))
-                    <div class="mx-8 mb-4">
-                        <x-alert type="success" :message="session('success')" />
-                    </div>
-                @endif
+                <div class="w-full max-w-md">
 
-                @if (session('error'))
-                    <div class="mx-8 mb-4">
-                        <x-alert type="error" :message="session('error')" />
-                    </div>
-                @endif
+                    <div class="mb-10">
+                        <div class="text-4xl text-indigo-600 font-bold mb-4">*</div>
 
-                @if ($errors->any())
-                    <div class="mx-8 mb-4">
-                        <x-alert type="error" message="Terjadi kesalahan pada form login" />
-                    </div>
-                @endif
+                        <h1 class="text-5xl font-bold text-gray-900">
+                            Login
+                        </h1>
 
-                <form method="POST" action="{{ route('login') }}" class="px-8 pb-8">
-                    @csrf
-
-                    <!-- Email Field -->
-                    <div class="mb-5">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Alamat Email
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
-                                    </path>
-                                </svg>
-                            </div>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" required
-                                autofocus
-                                class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition @error('email') border-red-500 @enderror"
-                                placeholder="contoh@email.com">
-                        </div>
-                        @error('email')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Password Field -->
-                    <div class="mb-5">
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                            Password
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <input type="password" name="password" id="password" required
-                                class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition @error('password') border-red-500 @enderror"
-                                placeholder="Masukkan password">
-                            <button type="button" onclick="togglePassword()"
-                                class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                <svg id="eyeIcon" class="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                        @error('password')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Remember Me & Forgot Password -->
-                    <div class="flex items-center justify-between mb-6">
-                        <label class="flex items-center">
-                            <input type="checkbox" name="remember"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <span class="ml-2 text-sm text-gray-600">Ingat saya</span>
-                        </label>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800 transition">
-                            Lupa password?
-                        </a>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit"
-                        class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                        Login
-                    </button>
-
-                    <!-- Register Link -->
-                    <div class="mt-6 text-center">
-                        <p class="text-sm text-gray-600">
-                            Belum punya akun?
-                            <a href="{{ route('register') }}"
-                                class="text-blue-600 hover:text-blue-800 font-semibold transition">
-                                Daftar sekarang
-                            </a>
+                        <p class="text-gray-500 mt-4">
+                            Sistem Booking Servis Bengkel
                         </p>
                     </div>
-                </form>
-            </div>
 
-            <!-- Demo Credentials -->
-            <div class="mt-6 bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <p class="text-white text-sm text-center mb-2">Akun Demo:</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs text-white">
-                    <div class="bg-white/20 rounded p-2">
-                        <strong>Admin:</strong><br>
-                        admin@bengkel.com<br>
-                        password
-                    </div>
-                    <div class="bg-white/20 rounded p-2">
-                        <strong>Mekanik:</strong><br>
-                        mekanik@bengkel.com<br>
-                        password
-                    </div>
-                    <div class="bg-white/20 rounded p-2">
-                        <strong>Customer:</strong><br>
-                        customer@bengkel.com<br>
-                        password
-                    </div>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <!-- EMAIL -->
+                        <div class="mb-5">
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Your email
+                            </label>
+
+                            <input type="email" name="email" value="{{ old('email') }}"
+                                class="w-full h-14 px-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                placeholder="Masukkan email">
+                        </div>
+
+                        <!-- PASSWORD -->
+                        <div class="mb-8">
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Password
+                            </label>
+
+                            <div class="relative">
+                                <input id="password" type="password" name="password"
+                                    class="w-full h-14 px-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                    placeholder="Masukkan password">
+
+                                <button type="button" onclick="togglePassword()"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2">
+
+                                    <svg id="eyeIcon" class="w-5 h-5 text-gray-500" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- BUTTON -->
+                        <button type="submit"
+                            class="w-full h-14 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition shadow-lg">
+                            Login
+                        </button>
+
+                        <!-- Register -->
+                        <div class="text-center mt-8">
+                            <span class="text-gray-500">
+                                Belum punya akun?
+                            </span>
+
+                            <a href="{{ route('register') }}"
+                                class="font-semibold text-indigo-600 hover:text-indigo-800">
+                                Daftar
+                            </a>
+                        </div>
+
+                    </form>
+
                 </div>
+
             </div>
 
-            <!-- Footer -->
-            <div class="text-center mt-8">
-                <p class="text-blue-100 text-sm">
-                    &copy; {{ date('Y') }} Sistem Booking Servis Bengkel. All rights reserved.
-                </p>
-            </div>
         </div>
+
     </div>
 
     <script>
@@ -191,6 +136,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>

@@ -89,7 +89,6 @@
                             <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Harga</th>
                             <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Estimasi</th>
                             <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total Booking</th>
                             <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
                         </tr>
                     </thead>
@@ -113,7 +112,6 @@
                                         {{ $service->is_active ? 'Aktif' : 'Tidak Aktif' }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-right">{{ number_format($service->bookings_count ?? 0) }}
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex gap-2 justify-center">
