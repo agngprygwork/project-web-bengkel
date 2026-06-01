@@ -1,8 +1,8 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Admin ')
-@section('page-title', 'Admin ')
+@section('title', 'Admin Dashboard')
+@section('page-title', 'Admin Dashboard')
 
 @section('content')
     <div class="space-y-6">
