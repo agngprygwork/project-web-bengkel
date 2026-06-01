@@ -12,7 +12,7 @@
             <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-500 text-sm">Total Pendapatan</p>
+                        <p class="text-gray-500 text-sm">Total Pendapatan testing</p>
                         <p class="text-2xl font-bold text-green-600">
                             Rp {{ number_format($totalRevenue ?? 0, 0, ',', '.') }}
                         </p>
