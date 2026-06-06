@@ -18,30 +18,8 @@
         <div class="grid lg:grid-cols-2">
 
             <!-- LEFT SECTION -->
-            <div
-                class="hidden lg:flex relative min-h-[850px] p-12 bg-gradient-to-b from-sky-300 via-indigo-500 to-indigo-900 text-white">
+            <img src="{{ asset('images/background/1.jpeg') }}" alt="">
 
-                <div class="text-6xl font-bold">
-                    *
-                </div>
-
-                {{-- <div class="absolute bottom-12 left-12 right-12">
-
-                    <p class="text-xl mb-4 opacity-90">
-                        Join us today
-                    </p>
-
-                    <h2 class="text-5xl font-bold leading-tight">
-                        Create your account and start booking motorcycle services easily
-                    </h2>
-
-                    <p class="mt-6 text-lg text-white/80">
-                        Nikmati kemudahan booking servis motor secara online kapan saja dan di mana saja.
-                    </p>
-
-                </div> --}}
-
-            </div>
 
             <!-- RIGHT SECTION -->
             <div class="flex items-center justify-center p-8 lg:p-12">

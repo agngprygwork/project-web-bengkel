@@ -17,23 +17,8 @@
         <div class="grid lg:grid-cols-2">
 
             <!-- LEFT SIDE -->
-            <div
-                class="relative min-h-[700px] p-12 bg-gradient-to-b from-sky-300 via-indigo-500 to-indigo-900 text-white">
 
-                <div class="text-6xl font-bold">
-                    *
-                </div>
-
-                {{-- <div class="absolute bottom-12 left-12">
-                    <p class="text-xl mb-4 opacity-90">
-                        You can easily
-                    </p>
-
-                    <h2 class="text-5xl font-bold leading-tight">
-                        Get access your personal hub for clarity and productivity
-                    </h2>
-                </div> --}}
-            </div>
+            <img src="{{ asset('images/background/1.jpeg') }}" alt="">
 
             <!-- RIGHT SIDE -->
             <div class="flex items-center justify-center p-12">
@@ -41,7 +26,6 @@
                 <div class="w-full max-w-md">
 
                     <div class="mb-10">
-                        <div class="text-4xl text-indigo-600 font-bold mb-4">*</div>
 
                         <h1 class="text-5xl font-bold text-gray-900">
                             Login
