@@ -57,22 +57,18 @@
     <table>
         <thead>
             <tr>
-                <th>Tgl Pembayaran</th>
                 <th>Kode Booking</th>
                 <th>Customer</th>
                 <th>Service</th>
-                <th>Metode</th>
                 <th class="text-right">Total</th>
             </tr>
         </thead>
         <tbody>
             @forelse($payments as $payment)
                 <tr>
-                    <td>{{ \Carbon\Carbon::parse($payment->tanggal_pembayaran)->format('d/m/Y H:i') }}</td>
                     <td>{{ $payment->booking_code }}</td>
                     <td>{{ $payment->customer->user->name ?? 'N/A' }}</td>
                     <td>{{ $payment->jenisService->nama_service ?? 'N/A' }}</td>
-                    <td>{{ ucfirst(str_replace('_', ' ', $payment->metode_pembayaran ?? '-')) }}</td>
                     <td class="text-right">Rp {{ number_format($payment->total_bayar, 0, ',', '.') }}</td>
                 </tr>
             @empty
@@ -83,7 +79,7 @@
         </tbody>
         <tfoot>
             <tr style="background-color: #f3f4f6;">
-                <td colspan="5" class="text-right"><strong>Grand Total</strong></td>
+                <td colspan="3" class="text-right"><strong>Grand Total</strong></td>
                 <td class="text-right"><strong>Rp {{ number_format($stats['total_amount'], 0, ',', '.') }}</strong></td>
             </tr>
         </tfoot>

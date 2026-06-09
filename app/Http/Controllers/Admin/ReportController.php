@@ -58,26 +58,26 @@ class ReportController extends Controller
 
         $payments = Booking::with(['customer.user', 'jenisService', 'payment'])
             ->where('status_pembayaran', 'lunas')
-            ->whereBetween('tanggal_pembayaran', [$dateFrom, $dateTo])
-            ->orderBy('tanggal_pembayaran', 'desc')
+            ->whereBetween('updated_at', [$dateFrom, $dateTo])
+            ->orderBy('updated_at', 'desc')
             ->paginate(20);
 
         $stats = [
             'total_transactions' => $payments->total(),
             'total_amount' => Booking::where('status_pembayaran', 'lunas')
-                ->whereBetween('tanggal_pembayaran', [$dateFrom, $dateTo])
+                ->whereBetween('updated_at', [$dateFrom, $dateTo])
                 ->sum('total_bayar'),
             'by_payment_method' => Booking::select('metode_pembayaran', DB::raw('count(*) as total'), DB::raw('sum(total_bayar) as amount'))
                 ->where('status_pembayaran', 'lunas')
-                ->whereBetween('tanggal_pembayaran', [$dateFrom, $dateTo])
+                ->whereBetween('updated_at', [$dateFrom, $dateTo])
                 ->whereNotNull('metode_pembayaran')
                 ->groupBy('metode_pembayaran')
                 ->get(),
-            'daily' => Booking::select(DB::raw('DATE(tanggal_pembayaran) as date'), DB::raw('count(*) as total'), DB::raw('sum(total_bayar) as amount'))
+            'daily' => Booking::select(DB::raw('DATE(updated_at) as date'), DB::raw('count(*) as total'), DB::raw('sum(total_bayar) as amount'))
                 ->where('status_pembayaran', 'lunas')
-                ->whereBetween('tanggal_pembayaran', [$dateFrom, $dateTo])
-                ->groupBy(DB::raw('DATE(tanggal_pembayaran)'))
-                ->orderBy(DB::raw('DATE(tanggal_pembayaran)'), 'desc')
+                ->whereBetween('updated_at', [$dateFrom, $dateTo])
+                ->groupBy(DB::raw('DATE(updated_at)'))
+                ->orderBy(DB::raw('DATE(updated_at)'), 'desc')
                 ->get(),
         ];
 
@@ -189,8 +189,8 @@ class ReportController extends Controller
 
         $payments = Booking::with(['customer.user', 'jenisService', 'payment'])
             ->where('status_pembayaran', 'lunas')
-            ->whereBetween('tanggal_pembayaran', [$dateFrom, $dateTo])
-            ->orderBy('tanggal_pembayaran', 'desc')
+            ->whereBetween('updated_at', [$dateFrom, $dateTo])
+            ->orderBy('updated_at', 'desc')
             ->get();
 
         $stats = [
@@ -203,7 +203,7 @@ class ReportController extends Controller
                 ];
             }),
             'daily' => $payments->groupBy(function ($item) {
-                return $item->tanggal_pembayaran->format('Y-m-d');
+                return $item->updated_at->format('Y-m-d');
             })->map(function ($items) {
                 return [
                     'total' => $items->count(),

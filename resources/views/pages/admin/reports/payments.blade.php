@@ -8,28 +8,18 @@
     <div class="space-y-6">
         <!-- Filter Form -->
         <div class="bg-white rounded-lg shadow-md p-4">
-            <form method="GET" action="{{ route('admin.reports.payments') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Dari Tanggal</label>
-                    <input type="date" name="date_from" value="{{ $dateFrom }}"
-                        class="w-full border-gray-300 rounded-lg">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Sampai Tanggal</label>
-                    <input type="date" name="date_to" value="{{ $dateTo }}"
-                        class="w-full border-gray-300 rounded-lg">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Metode Pembayaran</label>
-                    <select name="payment_method" class="w-full border-gray-300 rounded-lg">
-                        <option value="all">Semua</option>
-                        <option value="cash" {{ request('payment_method') == 'cash' ? 'selected' : '' }}>Cash</option>
-                        <option value="transfer" {{ request('payment_method') == 'transfer' ? 'selected' : '' }}>Transfer
-                            Bank</option>
-                        <option value="qris" {{ request('payment_method') == 'qris' ? 'selected' : '' }}>QRIS</option>
-                        <option value="e_wallet" {{ request('payment_method') == 'e_wallet' ? 'selected' : '' }}>E-Wallet
-                        </option>
-                    </select>
+            <form method="GET" action="{{ route('admin.reports.payments') }}" class="flex justify-between">
+                <div class="flex space-x-10">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Dari Tanggal</label>
+                        <input type="date" name="date_from" value="{{ $dateFrom }}"
+                            class="w-full border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Sampai Tanggal</label>
+                        <input type="date" name="date_to" value="{{ $dateTo }}"
+                            class="w-full border-gray-300 rounded-lg">
+                    </div>
                 </div>
                 <div class="flex items-end gap-2">
                     <button type="submit"
@@ -66,15 +56,6 @@
                     {{ number_format($stats['total_transactions'] > 0 ? $stats['total_amount'] / $stats['total_transactions'] : 0, 0, ',', '.') }}
                 </p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <p class="text-gray-500 text-sm">Metode Terpopuler</p>
-                <p class="text-2xl font-bold text-purple-600">
-                    @php
-                        $topMethod = $stats['by_payment_method']->sortByDesc('total')->first();
-                    @endphp
-                    {{ $topMethod ? ucfirst(str_replace('_', ' ', $topMethod->metode_pembayaran)) : '-' }}
-                </p>
-            </div>
         </div>
 
         <!-- Detail Transactions Table -->
@@ -86,25 +67,16 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal Bayar</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kode Booking</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Metode</th>
                             <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         @foreach ($payments as $payment)
                             <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 text-sm">
-                                    {{ \Carbon\Carbon::parse($payment->tanggal_pembayaran)->format('d/m/Y H:i') }}</td>
                                 <td class="px-6 py-4 text-sm font-mono">{{ $payment->booking_code }}</td>
                                 <td class="px-6 py-4 text-sm">{{ $payment->customer->user->name ?? 'N/A' }}</td>
-                                <td class="px-6 py-4 text-sm">
-                                    <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
-                                        {{ ucfirst(str_replace('_', ' ', $payment->metode_pembayaran ?? '-')) }}
-                                    </span>
-                                </td>
                                 <td class="px-6 py-4 text-sm text-right font-semibold">Rp
                                     {{ number_format($payment->total_bayar, 0, ',', '.') }}</td>
                             </tr>
