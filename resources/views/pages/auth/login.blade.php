@@ -27,9 +27,9 @@
 
                     <div class="mb-10">
 
-                        <h1 class="text-5xl font-bold text-gray-900">
-                            Login
-                        </h1>
+                        <div class="w-full flex justify-center">
+                            <img src="{{ asset('images/logo/1.png') }}" alt="" class="w-[100px]">
+                        </div>
 
                         <p class="text-gray-500 mt-4">
                             Sistem Booking Servis Bengkel
