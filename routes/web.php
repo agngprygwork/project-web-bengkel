@@ -23,16 +23,11 @@ use Illuminate\Support\Facades\Route;
 // GUEST ROUTES (Belum Login)
 // ============================================
 Route::middleware('guest')->group(function () {
-    // Authentication
+    Route::get('/', [LoginController::class, 'showLoginForm']);
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
-
-    // Landing/Welcome Page
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
 });
 
 // ============================================
