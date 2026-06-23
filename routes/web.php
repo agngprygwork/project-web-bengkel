@@ -172,6 +172,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('history')->name('history.')->group(function () {
             Route::get('/', [CustomerHistoryController::class, 'index'])->name('index');
             Route::get('/{booking}', [CustomerHistoryController::class, 'show'])->name('show');
+            Route::get('/{booking}/invoice', [CustomerHistoryController::class, 'downloadInvoice'])->name('invoice');
         });
 
         // Profile Management
