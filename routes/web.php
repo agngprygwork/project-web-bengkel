@@ -11,6 +11,7 @@ use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
 use App\Http\Controllers\Customer\PaymentController as CustomerPaymentController;
 use App\Http\Controllers\Customer\HistoryController as CustomerHistoryController;
+use App\Http\Controllers\Guest\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // GUEST ROUTES (Belum Login)
 // ============================================
 Route::middleware('guest')->group(function () {
-    Route::get('/', [LoginController::class, 'showLoginForm']);
+    Route::get('/', [LandingController::class, 'index'])->name('landing');
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
